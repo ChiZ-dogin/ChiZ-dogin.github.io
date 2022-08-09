@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://ChiZ-dogin.github.io</id>
+    <title>ChiZ&apos;s Secret Base</title>
+    <updated>2022-08-09T06:34:12.545Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://ChiZ-dogin.github.io"/>
+    <link rel="self" href="https://ChiZ-dogin.github.io/atom.xml"/>
+    <subtitle>Salvation lies within.</subtitle>
+    <logo>https://ChiZ-dogin.github.io/images/avatar.png</logo>
+    <icon>https://ChiZ-dogin.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, ChiZ&apos;s Secret Base</rights>
+    <entry>
+        <title type="html"><![CDATA[VUE错误处理机制]]></title>
+        <id>https://ChiZ-dogin.github.io/post/vue-default/</id>
+        <link href="https://ChiZ-dogin.github.io/post/vue-default/">
+        </link>
+        <updated>2022-08-09T06:23:42.000Z</updated>
+        <content type="html"><![CDATA[<p>一、认识Vue错误处理</p>
+<ol>
+<li>errorHandler</li>
+</ol>
+<p>首先，可以看看Vue文档对其的介绍。这里不赘述太多，直接使用，一起看看打印结果。代码如下：</p>
+<p>// main.js<br>
+Vue.config.errorHandler = function (err, vm, info) {<br>
+console.log('全局捕获 err &gt;&gt;&gt;', err)<br>
+console.log('全局捕获 vm &gt;&gt;&gt;', vm)<br>
+console.log('全局捕获 info &gt;&gt;&gt;', info)<br>
+}<br>
+// App.vue<br>
+...<br>
+created () {<br>
+const obj = {}<br>
+// 直接在App组件的created钩子中尝试错误操作，调用obj中不存在的fn<br>
+obj.fn()<br>
+},<br>
+methods: {<br>
+handleClick () {<br>
+// 绑定一个click事件，点击时触发<br>
+const obj = {}<br>
+obj.fn()<br>
+}<br>
+}<br>
+...</p>
+<p>（1）created 的输出结果如下（文章结尾会以此进行 catch 的流程分析）：</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SSM——Spring+SpringMVC+MyBatis]]></title>
+        <id>https://ChiZ-dogin.github.io/post/ssm-springspringmvcmybatis/</id>
+        <link href="https://ChiZ-dogin.github.io/post/ssm-springspringmvcmybatis/">
+        </link>
+        <updated>2022-08-01T05:43:15.000Z</updated>
+        <content type="html"><![CDATA[<p>That is a framework which includes spring+spring mvc + mybaits, and i would like to record my learing process by writing a series notes and share them in time.<br>
+but before i start, i have to say, during this process,error:443 time out really borthed me most.😇</p>
+<p>a. What is SSM framework?<br>
+SSM framework is spring, spring MVC , and mybatis framework for integration , is the standard MVC pattern . The standard SSM framework has four layers, respectively, dao layer (mapper), service layer, controller layer and View layer. The use of spring to achieve business object management , the use of spring MVC is responsible for request forwarding and view management , mybatis as the data object persistence engine .</p>
+<ol>
+<li>persistence layer: dao layer (mapper) layer<br>
+Role: mainly to do the work of the data persistence layer, responsible for liaising with the database are encapsulated in this task.</li>
+</ol>
+<p>Dao layer is first designed interface, and then the Spring configuration file to define the interface implementation class.<br>
+Then you can make calls to the interface in the module to handle the data business. (Do not care which class is the implementation class of the interface)<br>
+The configuration of the data source and the parameters of the database connection are configured in the Spring configuration file.<br>
+2) service layer: Service layer<br>
+Role: Service layer is mainly responsible for the design of the business module logic application.</p>
+<p>First design the interface and then design the real class, and then configure its implementation in the Spring configuration file associated. (Business logic layer implementation specific to call to their own already defined Dao interface) so that you can call the Service interface in the application to conduct business processing.<br>
+After establishing the Dao and then establishing the service layer, the service layer should be under the controller layer, because both the interface of the Dao layer should be invoked and the interface should be provided to the controller layer. Each model has a service interface, and each interface encapsulates the methods of respective business processing.</p>
+<ol>
+<li>Performance layer: Controller layer<br>
+Role: Responsible for the control of specific business module processes.</li>
+</ol>
+<p>The configuration is also done inside the Spring configuration file.<br>
+Call the interface provided by the Service layer to control the business process.<br>
+Different business processes will have different controllers, in the specific development of our processes can be abstracted and summarized, designed to reuse the sub-unit process module.<br>
+4）View layer<br>
+Role: Mainly closely integrated with the control layer, mainly responsible for the representation of the foreground jsp page.</p>
+<p>The connection between the layers</p>
+<p>Here is the reference<br>
+DAO layer, Service layer of these two layers can be developed separately, the coupling between each other is very low, completely independent, such a model in the development of large projects in the process especially advantageous, Controller, View layer because of the higher coupling, and thus to be combined together to develop, but can also be seen as a whole independent of the first two layers to develop. Thus, before the layer and layer we only need to know the definition of the interface, call the interface to complete the required unit of logic application, everything seems very clear and simple.</p>
+<ol>
+<li>Spring<br>
+Spring inside the IOC container and AOP is what we usually use the most.</li>
+</ol>
+<ol>
+<li>IOC (Inversion of Control)<br>
+It can load beans, but also a design idea to reduce the coupling between objects. (Such as renting a house. Previously, you need to rent a house to find a house, time-consuming and laborious, then now join a housing agent, you need to tell the agent the type of housing, you can directly choose the house you need, the agent is equivalent to spring container.)</li>
+<li>AOP (Aspect Oriented Programming)<br>
+is a complement to object-oriented development, which allows developers to dynamically modify the model to meet new requirements without changing the original model, such as: dynamic addition of logging, security or exception handling, etc. AOP makes the business logic between the various parts of the coupling is reduced, improve program reusability and improve development efficiency.</li>
+</ol>
+<ol>
+<li>cross-cutting concerns: the same class of non-core business code extracted from each method.</li>
+<li>cut: the class that encapsulates the cross-cutting information points, each concern is embodied as a notification method.</li>
+<li>Notification: each specific work that must be done by the cut, that is, a method in the cut.</li>
+<li>Target: the object to be notified, that is, the object acted upon by the notification method.</li>
+<li>Proxy: The proxy object created after applying the notification like the target object.</li>
+<li>Connection point: the specific embodiment of the cross-cutting concern in the program code, a specific location for the application execution. (In layman's terms is a method)</li>
+<li>entry point: entry point is the way to locate the connection point. The entry point expression on each notification finds the corresponding connection point, and the connection point becomes the entry point after the execution of the notification.</li>
+</ol>
+<h3 id="spring-mvc">spring mvc</h3>
+<p><strong>Complex Version</strong><br>
+1, the user sends a request to the front-end controller DispatcherServlet.<br>
+2, DispatcherServlet receives the request to call the HandlerMapping processor mapper.<br>
+3, the processor mapper to find the specific processor (you can find based on xml configuration, annotations), generate the processor object and processor interceptor (if there is generated) and return to the DispatcherServlet.<br>
+4, DispatcherServlet call HandlerAdapter processor adapter.<br>
+5, HandlerAdapter after adaptation to call the specific processor (Controller, also called the back-end controller).<br>
+6, Controller execution is completed to return ModelAndView.<br>
+7, HandlerAdapter will controller execution results ModelAndView returned to the DispatcherServlet.<br>
+8, DispatcherServlet will ModelAndView to the ViewReslover view parser.<br>
+9、 ViewReslover returns the specific View after parsing.<br>
+10、 DispatcherServlet renders the view according to the View (that is, the model data is filled into the view).<br>
+11、 DispatcherServlet responds to the user.</p>
+<p><strong>Simple version</strong></p>
+<ol>
+<li>Client sends request to DispacherServlet (Dispatcher)</li>
+<li>The DispacherServlet controller queries HanderMapping to find the Controller handling the request</li>
+<li>Controller calls the business logic processing, and then returns the ModelAndView</li>
+<li>DispacherSerclet query view parser to find the view specified by ModelAndView</li>
+<li>The view is responsible for displaying the results to the client</li>
+</ol>
+<p>3.Mybatis (key is SqlSession)<br>
+mybatis is a wrapper around jdbc that makes the underlying database operations transparent. mybatis operations all revolve around a sqlSessionFactory instance. mybatis is associated to the Mapper file of each entity class through a configuration file, which configures the sql statements that each class needs to make to the database Mapping. Each time you interact with the database, you get a sqlSession through the sqlSessionFactory and then execute sql commands.</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[凯撒密码]]></title>
+        <id>https://ChiZ-dogin.github.io/post/kai-sa-mi-ma/</id>
+        <link href="https://ChiZ-dogin.github.io/post/kai-sa-mi-ma/">
+        </link>
+        <updated>2022-08-01T05:34:24.000Z</updated>
+        <content type="html"><![CDATA[<p>xxxx</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sdudoc-动态路由]]></title>
+        <id>https://ChiZ-dogin.github.io/post/sdudoc-dong-tai-lu-you/</id>
+        <link href="https://ChiZ-dogin.github.io/post/sdudoc-dong-tai-lu-you/">
+        </link>
+        <updated>2022-07-28T03:30:43.000Z</updated>
+        <content type="html"><![CDATA[<p>动态路由实际上就是动态配置API网关的路由参数。这样就可以实现在不重启服务的情况下，API路由规则的动态配置。<br>
+在这里选用Spring Cloud Gateway进行处理。</p>
+<p>Spring Cloud Gateway是Spring Cloud家族中的一款API网关。因为之前 Zuul 2.x 的不断跳票，Spring Cloud 才釜底抽薪推出了自己的服务网关：Spring Cloud Gateway。Gateway 建立在 Spring Webflux上，目标是提供一个简洁、高效的API网关，同时也可以快速的拼装上Spring Cloud全家桶的API网关。</p>
+]]></content>
+    </entry>
+</feed>
